@@ -81,7 +81,7 @@ export default function ContactPage() {
                   </div>
                   <div className="space-y-1">
                     <p className="text-xs font-bold text-primary uppercase tracking-widest">Email Us</p>
-                    <a href="mailto:info@ireecommunitragency.com" className="text-xl font-bold text-foreground hover:text-primary transition-colors">info@ireecommunitragency.com</a>
+                    <a href="mailto:Ireecommunityagency@gmail.com" className="text-xl font-bold text-foreground hover:text-primary transition-colors">Ireecommunityagency@gmail.com</a>
                   </div>
                 </div>
 
@@ -101,7 +101,7 @@ export default function ContactPage() {
                   </div>
                   <div className="space-y-1">
                     <p className="text-xs font-bold text-primary uppercase tracking-widest">Office Location</p>
-                    <p className="text-xl font-bold text-foreground">Toronto, Ontario, Canada</p>
+                    <p className="text-xl font-bold text-foreground">2275 Upper Middle Rd E Suite 101, Oakville, ON L6H 0C3</p>
                   </div>
                 </div>
 

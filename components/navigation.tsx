@@ -12,7 +12,7 @@ export function Navigation() {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About Us' },
     { href: '/services', label: 'Services' },
-    { href: '/apply', label: 'Apply Now' },
+    { href: '/find-talent', label: 'Find Talent' },
     { href: '/contact', label: 'Contact Us' },
   ]
 
@@ -42,11 +42,11 @@ export function Navigation() {
           {/* Contact Info and Mobile Menu Toggle */}
           <div className="flex items-center gap-6">
             <a
-              href="mailto:info@ireecommunitragency.com"
+              href="mailto:Ireecommunityagency@gmail.com"
               className="hidden lg:flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              info@ireecommunitragency.com
+              Ireecommunityagency@gmail.com
             </a>
             <Button
               asChild

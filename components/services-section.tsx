@@ -1,7 +1,7 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import { Heart, UtensilsCrossed, Shield, Briefcase, ArrowRight } from 'lucide-react'
+import { Heart, UtensilsCrossed, Shield, Briefcase, ArrowRight, Car, Pill } from 'lucide-react'
 
 export function ServicesSection() {
   const services = [
@@ -33,6 +33,20 @@ export function ServicesSection() {
       icon: Briefcase,
       accent: 'secondary',
     },
+    {
+      id: 5,
+      title: 'Transportation',
+      description: 'Reliable pick-up and drop-off for elderly clients to hospitals, appointments, and errands.',
+      icon: Car,
+      accent: 'primary',
+    },
+    {
+      id: 6,
+      title: 'Medication Delivery',
+      description: 'Safe collection and delivery of prescriptions for elderly clients and those in need.',
+      icon: Pill,
+      accent: 'secondary',
+    },
   ]
 
   return (
@@ -56,7 +70,7 @@ export function ServicesSection() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, i) => {
             const IconComponent = service.icon
             return (

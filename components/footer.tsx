@@ -7,7 +7,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer id="contact" className="bg-white border-t border-border pt-32 pb-12 overflow-hidden relative">
+    <footer id="contact" className="bg-gray-100 border-t border-border pt-32 pb-12 overflow-hidden relative">
       <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-primary/5 rounded-full blur-[140px] -z-10" />
       
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -16,15 +16,7 @@ export function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-5 space-y-8">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-white font-serif font-bold text-2xl shadow-lg">
-                I
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-serif font-bold tracking-tight text-foreground leading-tight">
-                  Iree <span className="text-primary italic">Community</span>
-                </span>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-semibold">Staffing Solutions</span>
-              </div>
+             <img src="/logo.png" alt="Logo" className="w-24 h-24" />
             </Link>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-sm font-medium">
               The premier choice for professional staffing across Canada. Elevating standards in healthcare, hospitality, and security services.
@@ -77,7 +69,7 @@ export function Footer() {
             <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-foreground">Contact</h3>
             <div className="space-y-6">
               <a
-                href="mailto:info@ireecommunitragency.com"
+                href="mailto:Ireecommunityagency@gmail.com"
                 className="group flex items-start gap-4"
               >
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all">
@@ -85,7 +77,7 @@ export function Footer() {
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Email Us</p>
-                  <p className="text-foreground font-medium group-hover:text-primary transition-colors">info@ireecommunitragency.com</p>
+                  <p className="text-foreground font-medium group-hover:text-primary transition-colors">Ireecommunityagency@gmail.com</p>
                 </div>
               </a>
               <a
@@ -106,7 +98,7 @@ export function Footer() {
                 </div>
                 <div className="space-y-1">
                   <p className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Location</p>
-                  <p className="text-foreground font-medium">Toronto, Ontario, Canada</p>
+                  <p className="text-foreground font-medium">2275 Upper Middle Rd E Suite 101, Oakville, ON L6H 0C3</p>
                 </div>
               </div>
             </div>

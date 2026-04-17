@@ -1,6 +1,7 @@
 import { Inter, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { Metadata } from 'next';
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -15,15 +16,6 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: 'Iree Community Agency | Premier Canada Staffing Solutions',
   description: 'Elevating professional standards in healthcare, hospitality, and security staffing across Canada. Reliable, vetted, and professional talent at your service.',
-  icons: {
-    icon: [
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
-  },
 }
 
 export default function RootLayout({

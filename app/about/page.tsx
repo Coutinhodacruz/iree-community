@@ -87,7 +87,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-3xl font-serif font-bold text-foreground mb-6">Our Vision</h3>
               <p className="text-lg text-muted-foreground leading-relaxed font-medium">
-                To become the most trusted brand for quality staffing solutions when you need healthcare support the most. We aim to be the first name organizations think of for reliability and quality.
+                To become the most trusted brand for quality staffing solutions when healthcare support is needed the most, and the first name organizations think of for reliability and quality.
               </p>
             </div>
             <div className="group bg-white p-12 rounded-[2.5rem] border border-border shadow-sm hover:shadow-xl transition-all duration-500">
@@ -96,7 +96,7 @@ export default function AboutPage() {
               </div>
               <h3 className="text-3xl font-serif font-bold text-foreground mb-6">Our Mission</h3>
               <p className="text-lg text-muted-foreground leading-relaxed font-medium">
-                To provide a motivated and focused workforce that is trained and passionate about improving the care approach. We champion the needs of clients and families, delivering integrated, high-quality care that creates possibilities for independence.
+                To provide a motivated and focused workforce that is trained and passionate about improving care, while championing the needs of clients and families through integrated, high-quality support.
               </p>
             </div>
           </div>
@@ -119,7 +119,7 @@ export default function AboutPage() {
             {[
               { type: 'Qualified Nurses', roles: ['RN (Registered Nurse)', 'RPN (Registered Practical Nurse)'] },
               { type: 'Support Workers', roles: ['PSW (Personal Support Worker)', 'DSW (Disability Support Worker)'] },
-              { type: 'Hospitality Experts', roles: ['Cooks', 'Chefs', 'Kitchen Assistants'] },
+              { type: 'Hospitality Experts', roles: ['Event Support Staff', 'Banquet Server', 'Kitchen Aide', 'Waiters'] },
               { type: 'Care Aides', roles: ['Housekeepers', 'Cleaners', 'Dietitians'] },
               { type: 'General Labour', roles: ['Factory Workers', 'Warehouse Staff', 'Machine Operators'] },
               { type: 'Specialized Staff', roles: ['Administrative', 'Customer Service', 'Facility Security'] }
@@ -151,7 +151,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <div className="lg:col-span-12 xl:col-span-7 space-y-10">
               <div className="space-y-6">
-                <h2 className="text-4xl md:text-6xl font-serif font-bold">Why <span className="text-primary italic">IREE Agency?</span></h2>
+                <h2 className="text-4xl md:text-6xl font-serif font-bold text-white">Why <span className="text-primary italic">IREE Agency?</span></h2>
                 <p className="text-xl text-white/70 leading-relaxed font-medium">
                   We bridge the gap between skilled medical personnel and the facilities that need them most, from residential care to government prisons and businesses.
                 </p>

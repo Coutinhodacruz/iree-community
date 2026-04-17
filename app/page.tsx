@@ -7,15 +7,19 @@ import { ServicesSection } from '@/components/services-section'
 import { IndustriesSection } from '@/components/industries-section'
 import { TestimonialsSection } from '@/components/testimonials-section'
 import { CTASection } from '@/components/cta-section'
+import { ValueProposition } from '@/components/value-proposition'
+import { SectorsSection } from '@/components/sectors-section'
 
 export default function Home() {
   return (
     <main>
       <Navigation />
       <HeroSection />
+      <ValueProposition />
       <ServicesSection />
+      <SectorsSection />
       <IndustriesSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <CTASection />
       <Footer />
     </main>

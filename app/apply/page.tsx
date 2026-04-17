@@ -24,9 +24,11 @@ export default function ApplyPage() {
   const positions = [
     'Personal Support Worker (PSW)',
     'Registered Nurse (RN)',
-    'Licensed Practical Nurse (LPN)',
-    'Kitchen Staff',
-    'Wait Staff',
+    'Registered Practical Nurse (RPN)',
+    'Event Support Staff',
+    'Banquet Server',
+    'Kitchen Aide',
+    'Waiters',
     'Security Guard',
     'Warehouse Worker',
     'Administrative Assistant',
@@ -260,10 +262,10 @@ export default function ApplyPage() {
               </a>
               <span className="hidden sm:block text-muted-foreground">•</span>
               <a
-                href="mailto:info@ireecommunitragency.com"
+                href="mailto:Ireecommunityagency@gmail.com"
                 className="text-primary font-semibold hover:text-primary/80 transition-colors"
               >
-                ✉️ info@ireecommunitragency.com
+                ✉️ Ireecommunityagency@gmail.com
               </a>
             </div>
           </div>

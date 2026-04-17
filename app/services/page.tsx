@@ -3,7 +3,7 @@
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { Button } from '@/components/ui/button'
-import { Heart, UtensilsCrossed, Shield, Briefcase, ArrowRight, CheckCircle2, Star, Target, Users } from 'lucide-react'
+import { Heart, UtensilsCrossed, Shield, Briefcase, ArrowRight, CheckCircle2, Star, Target, Users, Car, Pill } from 'lucide-react'
 
 export default function ServicesPage() {
   const categories = [
@@ -20,7 +20,7 @@ export default function ServicesPage() {
       title: 'Hospitality & Culinary',
       icon: UtensilsCrossed,
       description: 'Professional culinary and service staff for hotels, restaurants, and exclusive events.',
-      positions: ['Chefs', 'Cooks', 'Housekeeping Aide', 'Cleaners'],
+      positions: ['Event Support Staff', 'Banquet Server', 'Kitchen Aide', 'Waiters', 'Housekeeping Aide', 'Cleaners'],
       accent: 'secondary'
     },
     {
@@ -28,7 +28,7 @@ export default function ServicesPage() {
       title: 'Security & Safety',
       icon: Shield,
       description: 'Trained security personnel for government facilities, private businesses, and medical centers.',
-      positions: ['Facility Security', 'Event Security', 'Loss Prevention', 'Access Control'],
+      positions: ['Facility Security', 'Event Security'],
       accent: 'primary'
     },
     {
@@ -37,6 +37,36 @@ export default function ServicesPage() {
       icon: Briefcase,
       description: 'Reliable general labor and industrial staffing for factories, warehouses, and logistics.',
       positions: ['Factory Workers', 'Machine Operators', 'Warehouse Staff', 'General Labourers'],
+      accent: 'secondary'
+    },
+    {
+      id: 5,
+      title: 'Transportation Services',
+      icon: Car,
+      description: 'Safe pick-up and drop-off support for elderly clients and individuals getting to medical appointments, daycare, and essentials.',
+      positions: [
+        'Hospital & Clinic Drop-off',
+        'Senior Daycare Programs',
+        'Therapy Session Escort',
+        'Essential Errands & Social Visits',
+        'Appointment Coordination',
+        'Safer, Reliable Movement'
+      ],
+      accent: 'primary'
+    },
+    {
+      id: 6,
+      title: 'Medication Pick-Up & Delivery',
+      icon: Pill,
+      description: 'Secure collection and delivery of prescriptions and medications for those requiring dependable health assistance.',
+      positions: [
+        'Pharmacy Prescription Collection',
+        'Routine Medication Delivery',
+        'Urgent Refill Support',
+        'Caregiver Support & Coordination',
+        'Dignified, Professional Handling',
+        'Timely Health Access'
+      ],
       accent: 'secondary'
     }
   ]
@@ -110,7 +140,9 @@ export default function ServicesPage() {
                           '/healthcare-service.png',
                           '/hospitality-service.png',
                           '/security-service.png',
-                          '/industrial-service.png'
+                          '/industrial-service.png',
+                          '/transportation_service.png',
+                          '/medication_delivery_service.png'
                         ][i]} 
                         alt={cat.title} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
