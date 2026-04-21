@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { Button } from '@/components/ui/button'
@@ -10,8 +10,72 @@ import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { ArrowRight, Send, Building2, User, Mail, MapPin, ClipboardList, Clock } from 'lucide-react'
+import { toast } from 'sonner'
 
 export default function FindTalentPage() {
+  const [formData, setFormData] = useState({
+    requestType: '',
+    name: '',
+    email: '',
+    orgName: '',
+    location: '',
+    shift: 'full-time',
+    needs: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target
+    setFormData((prev) => ({ ...prev, [id]: value }))
+  }
+
+  const handleSelectChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, requestType: value }))
+  }
+
+  const handleShiftChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, shift: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    try {
+      const res = await fetch('/api/find-talent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      if (res.ok) {
+        toast.success('Request Submitted!', {
+          description: 'Thank you for your request! We will contact you soon.',
+        })
+        setFormData({
+          requestType: '',
+          name: '',
+          email: '',
+          orgName: '',
+          location: '',
+          shift: 'full-time',
+          needs: ''
+        })
+      } else {
+        toast.error('Failed to submit request', {
+          description: 'Please try again or contact us directly.',
+        })
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      toast.error('An error occurred', {
+        description: 'Please try again later.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <main className="bg-white">
       <Navigation />
@@ -63,14 +127,14 @@ export default function FindTalentPage() {
       <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-10">
           <div className="bg-white rounded-[2.5rem] border border-border p-8 md:p-16 shadow-2xl shadow-slate-200/50">
-            <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-10" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 {/* Type of Request */}
                 <div className="space-y-3 md:col-span-2">
                   <Label htmlFor="requestType" className="text-sm font-bold uppercase tracking-wider text-foreground/70 flex items-center gap-2">
                     <ClipboardList className="w-4 h-4 text-primary" /> Type of Request *
                   </Label>
-                  <Select>
+                  <Select value={formData.requestType} onValueChange={handleSelectChange}>
                     <SelectTrigger className="h-14 rounded-2xl border-border bg-slate-50/50 focus:bg-white transition-all">
                       <SelectValue placeholder="Select talent category" />
                     </SelectTrigger>
@@ -90,7 +154,7 @@ export default function FindTalentPage() {
                   <Label htmlFor="name" className="text-sm font-bold uppercase tracking-wider text-foreground/70 flex items-center gap-2">
                     <User className="w-4 h-4 text-primary" /> Contact Name *
                   </Label>
-                  <Input id="name" placeholder="John Doe" className="h-14 rounded-2xl border-border bg-slate-50/50 focus:bg-white transition-all" />
+                  <Input id="name" value={formData.name} onChange={handleChange} placeholder="John Doe" className="h-14 rounded-2xl border-border bg-slate-50/50 focus:bg-white transition-all" />
                 </div>
 
                 {/* Email */}
@@ -98,7 +162,7 @@ export default function FindTalentPage() {
                   <Label htmlFor="email" className="text-sm font-bold uppercase tracking-wider text-foreground/70 flex items-center gap-2">
                     <Mail className="w-4 h-4 text-primary" /> Email Address *
                   </Label>
-                  <Input id="email" type="email" placeholder="john@organization.com" className="h-14 rounded-2xl border-border bg-slate-50/50 focus:bg-white transition-all" />
+                  <Input id="email" type="email" value={formData.email} onChange={handleChange} placeholder="john@organization.com" className="h-14 rounded-2xl border-border bg-slate-50/50 focus:bg-white transition-all" />
                 </div>
 
                 {/* Organization Name */}
@@ -106,7 +170,7 @@ export default function FindTalentPage() {
                   <Label htmlFor="orgName" className="text-sm font-bold uppercase tracking-wider text-foreground/70 flex items-center gap-2">
                     <Building2 className="w-4 h-4 text-primary" /> Organization Name *
                   </Label>
-                  <Input id="orgName" placeholder="Iree Community Agency" className="h-14 rounded-2xl border-border bg-slate-50/50 focus:bg-white transition-all" />
+                  <Input id="orgName" value={formData.orgName} onChange={handleChange} placeholder="Iree Community Agency" className="h-14 rounded-2xl border-border bg-slate-50/50 focus:bg-white transition-all" />
                 </div>
 
                 {/* Location */}
@@ -114,7 +178,7 @@ export default function FindTalentPage() {
                   <Label htmlFor="location" className="text-sm font-bold uppercase tracking-wider text-foreground/70 flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-primary" /> Location *
                   </Label>
-                  <Input id="location" placeholder="City, Province" className="h-14 rounded-2xl border-border bg-slate-50/50 focus:bg-white transition-all" />
+                  <Input id="location" value={formData.location} onChange={handleChange} placeholder="City, Province" className="h-14 rounded-2xl border-border bg-slate-50/50 focus:bg-white transition-all" />
                 </div>
 
                 {/* Required Shift */}
@@ -122,7 +186,7 @@ export default function FindTalentPage() {
                   <Label className="text-sm font-bold uppercase tracking-wider text-foreground/70 flex items-center gap-2 mb-4">
                     <Clock className="w-4 h-4 text-primary" /> Required Shift *
                   </Label>
-                  <RadioGroup defaultValue="full-time" className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <RadioGroup value={formData.shift} onValueChange={handleShiftChange} className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="flex items-center space-x-2 bg-white p-3 rounded-xl border border-border">
                       <RadioGroupItem value="full-time" id="ft" />
                       <Label htmlFor="ft" className="font-bold cursor-pointer">Full Time</Label>
@@ -147,13 +211,13 @@ export default function FindTalentPage() {
                   <Label htmlFor="needs" className="text-sm font-bold uppercase tracking-wider text-foreground/70 flex items-center gap-2">
                     Describe Staffing Needs
                   </Label>
-                  <Textarea id="needs" placeholder="Please provide more details about your specific requirements..." className="min-h-[150px] rounded-[2rem] border-border bg-slate-50/50 focus:bg-white transition-all p-6" />
+                  <Textarea id="needs" value={formData.needs} onChange={handleChange} placeholder="Please provide more details about your specific requirements..." className="min-h-[150px] rounded-[2rem] border-border bg-slate-50/50 focus:bg-white transition-all p-6" />
                 </div>
               </div>
 
               <div className="pt-8 text-center">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold h-16 px-16 rounded-2xl shadow-2xl shadow-primary/20 transition-all hover:scale-105 active:scale-95 text-lg gap-3">
-                  Submit Request <Send className="w-5 h-5" />
+                <Button disabled={isSubmitting} type="submit" size="lg" className="bg-primary hover:bg-primary/90 text-white font-bold h-16 px-16 rounded-2xl shadow-2xl shadow-primary/20 transition-all hover:scale-105 active:scale-95 text-lg gap-3">
+                  {isSubmitting ? 'Submitting...' : <>Submit Request <Send className="w-5 h-5" /></>}
                 </Button>
                 <p className="mt-6 text-sm text-muted-foreground font-medium italic">
                   * Our team typically responds to staffing requests within 2 business hours.

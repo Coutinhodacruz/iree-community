@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { useState } from 'react'
 import { Mail, Phone, MapPin, Clock, Send, MessageSquare, Linkedin, Facebook, Twitter, Shield } from 'lucide-react'
+import { toast } from 'sonner'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -16,23 +17,50 @@ export default function ContactPage() {
     subject: '',
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Contact form submitted:', formData)
-    alert('Thank you for your message! We will get back to you shortly.')
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    })
+    setIsSubmitting(true)
+    
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (res.ok) {
+        toast.success('Message Sent!', {
+          description: 'Thank you for your message! We will get back to you shortly.',
+        })
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: '',
+        })
+      } else {
+        toast.error('Failed to send message', {
+          description: 'Please try again or contact us directly.',
+        })
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      toast.error('An error occurred', {
+        description: 'Please try again later.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -203,8 +231,10 @@ export default function ContactPage() {
                       />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-white font-bold h-16 rounded-2xl shadow-xl shadow-primary/20 transition-all hover:scale-[1.02]">
-                      Send Inquiry <Send className="w-5 h-5 ml-2" />
+                    <Button disabled={isSubmitting} type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-white font-bold h-16 rounded-2xl shadow-xl shadow-primary/20 transition-all hover:scale-[1.02]">
+                      {isSubmitting ? 'Sending...' : (
+                        <>Send Inquiry <Send className="w-5 h-5 ml-2" /></>
+                      )}
                     </Button>
                   </form>
                 </div>

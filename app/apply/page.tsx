@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useState } from 'react'
 import { Briefcase, CheckCircle2, Award } from 'lucide-react'
+import { toast } from 'sonner'
 
 export default function ApplyPage() {
   const [formData, setFormData] = useState({
@@ -20,6 +21,7 @@ export default function ApplyPage() {
     resume: null,
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const positions = [
     'Personal Support Worker (PSW)',
@@ -44,20 +46,45 @@ export default function ApplyPage() {
     setFormData((prev) => ({ ...prev, position: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
-    alert('Thank you for applying! We will review your application and contact you soon.')
-    setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      position: '',
-      experience: '',
-      resume: null,
-      message: '',
-    })
+    setIsSubmitting(true)
+    
+    try {
+      const res = await fetch('/api/apply', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (res.ok) {
+        toast.success('Application Submitted', {
+          description: 'Thank you for applying! We will review your application and contact you soon.',
+        })
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          position: '',
+          experience: '',
+          resume: null,
+          message: '',
+        })
+      } else {
+        toast.error('Failed to submit application', {
+          description: 'Please try again or contact us directly.',
+        })
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      toast.error('An error occurred', {
+        description: 'Please try again later.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -234,11 +261,12 @@ export default function ApplyPage() {
 
                 {/* Submit Button */}
                 <Button
+                  disabled={isSubmitting}
                   type="submit"
                   size="lg"
                   className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
                 >
-                  Submit Application
+                  {isSubmitting ? 'Submitting...' : 'Submit Application'}
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center">
